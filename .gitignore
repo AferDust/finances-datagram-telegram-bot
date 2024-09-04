@@ -1,0 +1,64 @@
+# Byte-compiled / optimized Python files
+*.pyc
+__pycache__/
+
+# Django-specific files
+*.log
+db.sqlite3
+
+# Static files
+/static/
+*.css
+*.js
+
+# Media files
+/media/
+
+# Virtual environment
+venv/
+.venv/
+
+# IDE-specific files
+.idea/
+.vscode/
+
+# Compiled Python bytecode (Python 3.2+)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# macOS files
+.DS_Store
+
+# Windows thumbnail cache files
+Thumbs.db
+
+# Environment-specific files
+.env
+.env.dev
+.env.prod
+.env.local
+.env.*.local
+
+# Ignore the pipenv and poetry lock files
+Pipfile.lock
+poetry.lock
+
+# Ignore SQLite database
+*.sqlite3
+
+# Ignore migrations
+**/migrations/
+
+# Ignore local settings
+**/local_settings.py
+
+docker-compose.yml
+
+static
+pgdata
+api/migrations
+example.yaml
+db_copy.py
+ex.py
+ex2.py
