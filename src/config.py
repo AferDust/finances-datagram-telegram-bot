@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     DB_PASS: str
     DB_NAME: str
     DATABASE_ECHO: bool = True
+    TELEGRAM_BOT_TOKEN: str
 
     @property
     def DATABASE_URL_asyncpg(self):
