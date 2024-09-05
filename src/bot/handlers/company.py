@@ -12,7 +12,7 @@ from src.modules.company.validations import (
     company_creation_validations,
     company_exists_validations,
 )
-from src.modules.company.services import create_company
+from src.modules.company.services import create_company, delete_company
 
 
 router = Router()
@@ -74,6 +74,7 @@ async def create_company_command_state_handler(
     message: types.Message, state: FSMContext, user: User, session: AsyncSession
 ):
     logging.info("In 'create_company_command_state_handler' function")
+    kb = await get_company_exists_buttons()
 
     try:
         company_name = message.text
@@ -92,8 +93,28 @@ async def create_company_command_state_handler(
             return
 
         new_company = await create_company(user.id, company_name, session)
-        await message.answer(f"Company '{new_company.name}' has been created!")
+        await message.answer(
+            f"Company '{new_company.name}' has been created!", reply_markup=kb
+        )
         await state.clear()
     except Exception as exception:
         logging.error(exception)
         await message.answer(str(exception))
+
+
+@router.message(lambda message: message.text == "Delete Company")
+async def handle_delete_company(
+    message: types.Message, user: User, session: AsyncSession
+):
+    logging.info("In 'handle_delete_company' function")
+    kb = await get_company_not_exists_buttons()
+
+    try:
+        if user and user.company:
+            content = await delete_company(user.company, session)
+            await message.answer(content, reply_markup=kb)
+        else:
+            await message.answer("You don't have a company to delete.", reply_markup=kb)
+    except Exception as exception:
+        logging.error(exception)
+        await message.answer(str(exception), reply_markup=kb)

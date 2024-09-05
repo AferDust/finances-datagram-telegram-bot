@@ -74,7 +74,7 @@ class MonthlyCompanyData(Base):
     KPN: Mapped[positive_integer_field]
     created_at: Mapped[created_at]
     company_id: Mapped[int] = mapped_column(
-        Integer, ForeignKey("companies.id"), nullable=False
+        Integer, ForeignKey("companies.id", ondelete="CASCADE"), nullable=False
     )
 
     company: Mapped["Company"] = relationship(back_populates="monthly_data_set")
@@ -96,5 +96,5 @@ class Company(Base):
 
     user: Mapped["User"] = relationship(back_populates="company")
     monthly_data_set: Mapped[List["MonthlyCompanyData"]] = relationship(
-        back_populates="company", uselist=True
+        back_populates="company", cascade="all, delete-orphan", uselist=True
     )

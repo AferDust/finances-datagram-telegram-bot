@@ -11,3 +11,10 @@ async def create_company(user_id: int, company_name: str, session: AsyncSession)
     await session.refresh(instance)
 
     return instance
+
+
+async def delete_company(company: Company, session: AsyncSession):
+    await session.delete(company)
+    await session.commit()
+
+    return "Company has been deleted."
