@@ -71,7 +71,7 @@ class MonthlyCompanyData(Base):
     income: Mapped[positive_integer_field]
     expenses: Mapped[positive_integer_field]
     profit: Mapped[positive_integer_field]
-    KPN: Mapped[positive_integer_field]
+    kpn: Mapped[positive_integer_field]
     created_at: Mapped[created_at]
     company_id: Mapped[int] = mapped_column(
         Integer, ForeignKey("companies.id", ondelete="CASCADE"), nullable=False
