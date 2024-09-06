@@ -20,7 +20,7 @@ from src.bot.handlers.company import (
     generate_list_of_buttons_based_on_list,
 )
 from src.models import User, MonthEnum
-from src.bot.states.company import (
+from bot.states import (
     MonthlyCompanyDataForm,
     ViewMonthlyCompanyDataForm,
     RetrieveCompanyDataForm,

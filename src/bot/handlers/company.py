@@ -7,7 +7,7 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemo
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.models import User
-from src.bot.states.company import (
+from bot.states import (
     CompanyCreationForm,
     MonthlyCompanyDataForm,
     ViewMonthlyCompanyDataForm,
